@@ -4,40 +4,77 @@
   <meta charset="UTF-8">
   <title>Keyboard Overlay</title>
   <style>
+    /* Body and overall background */
     html, body {
       margin: 0;
       padding: 0;
-      background: transparent;
+      background: #1a1a1a; /* Dark background for contrast */
       overflow: hidden;
+      font-family: 'Arial', sans-serif;
     }
 
+    /* Main keyboard container */
     .keyboard {
       display: grid;
-      grid-template-columns: repeat(7, 50px);
-      grid-gap: 6px;
-      padding: 10px;
+      grid-template-columns: repeat(7, 60px); /* Increased size for better visibility */
+      grid-gap: 8px;
+      justify-content: center;
+      padding: 20px;
+      margin-top: 20px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%); /* Center the keyboard on the page */
     }
 
+    /* Individual key styles */
     .key {
-      width: 50px;
-      height: 50px;
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      color: white;
-      font-size: 12px;
+      width: 60px;
+      height: 60px;
+      background: rgba(255, 255, 255, 0.2); /* Slightly lighter background */
+      border: 1px solid rgba(255, 255, 255, 0.4); /* Soft border */
+      color: #fff;
+      font-size: 16px; /* Larger text */
       font-weight: bold;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 6px;
-      transition: all 0.2s ease;
-      box-shadow: 0 0 4px rgba(255, 255, 255, 0.1);
+      border-radius: 8px; /* Rounded corners */
+      transition: all 0.3s ease;
+      box-shadow: 0 0 6px rgba(255, 255, 255, 0.2);
+      cursor: pointer;
     }
 
+    /* Hover effect for the keys */
+    .key:hover {
+      background: rgba(255, 255, 255, 0.3); /* Slight hover effect */
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    }
+
+    /* Active state for pressed keys */
     .key.pressed {
-      background: #00ffff;
-      color: #000;
-      box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+      background: #00ffff; /* Bright cyan background when pressed */
+      color: #000; /* Dark text color for readability */
+      box-shadow: 0 0 12px #00ffff, 0 0 24px #00ffff; /* Glowing effect */
+    }
+
+    /* Styling for special keys like Shift, Ctrl, etc. */
+    .key[data-code="CapsLock"],
+    .key[data-code="ShiftLeft"],
+    .key[data-code="ShiftRight"],
+    .key[data-code="ControlLeft"],
+    .key[data-code="AltLeft"] {
+      background: rgba(255, 0, 0, 0.2); /* Red-ish for modifier keys */
+      color: #fff;
+      font-size: 14px;
+    }
+
+    .key[data-code="CapsLock"]:hover,
+    .key[data-code="ShiftLeft"]:hover,
+    .key[data-code="ShiftRight"]:hover,
+    .key[data-code="ControlLeft"]:hover,
+    .key[data-code="AltLeft"]:hover {
+      background: rgba(255, 0, 0, 0.4); /* Darker red on hover */
     }
   </style>
 </head>
