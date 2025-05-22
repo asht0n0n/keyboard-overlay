@@ -78,11 +78,22 @@
       const key = Array.from(keys).find(k => k.dataset.code === event.code);
       if (key) {
         key.classList.toggle('pressed', pressed);
+      } else {
+        // Log to see what key is being pressed if not found
+        console.log(`Key not found: ${event.code}`);
       }
     }
 
-    window.addEventListener('keydown', e => setKeyState(e, true));
-    window.addEventListener('keyup', e => setKeyState(e, false));
+    // Log keydown and keyup events to see which keys are being pressed
+    window.addEventListener('keydown', e => {
+      console.log('Key pressed:', e.code); // Log the event code
+      setKeyState(e, true);
+    });
+
+    window.addEventListener('keyup', e => {
+      console.log('Key released:', e.code); // Log the event code
+      setKeyState(e, false);
+    });
   </script>
 </body>
 </html>
